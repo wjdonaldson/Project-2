@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+
+<section>
+  <div>Title: <%= recipe.title %></div>
+  <div>Description: <%= recipe.description %></div>
+  <div>Ingredients:</div>
+  <br>
+  <div>Directions:</div>
+  <% if (recipe.directions.length) { %>
+    <% recipe.directions.forEach(function(d, idx) { %>
+      <div><%= idx+1 %>:&nbsp;<%= d %></div>
+    <% }) %>
+  <% } %>
+  <br>
+  <div>Comments:</div>
+  <br>
+</section>
+
+<%- include('../partials/footer') %>

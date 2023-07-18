@@ -1,19 +1,21 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Project 2</a>
+    <a class="navbar-brand" href="#">Recipe Book</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/recipes">Recipes</a>
+        <a class="nav-link" href="/recipes/new">Add Recipe</a>
+        <a class="nav-link" href="/about">About</a>
         <% if (user) { %>
-          <a class="nav-link" href="/logout">Log Out</a>
-          <% } else { %>
-            <a class="nav-link" href="/auth/google">Log In</a>
-            <% } %>
-          </div>
-        </div>
+          <a id="login-link" class="nav-link" href="/logout">Log Out</a>
+        <% } else { %>
+          <a id="login-link" class="nav-link" href="/auth/google">Log In&nbsp;<img id="google-logo" src="https://i.imgur.com/FHjYyi0.png"></a>
+        <% } %>
       </div>
-    </nav>
-    <h1><%= title %></h1>
+    </div>
+  </div>
+</nav>

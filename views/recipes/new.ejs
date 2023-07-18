@@ -1,0 +1,22 @@
+<%- include('../partials/header') %>
+
+<form action="/recipes" method="POST">
+  <div>
+    <label>Title:</label>
+    <input type="text" name="title">
+  </div> 
+  <div>
+    <label>Description:</label>
+    <input type="text" name="description">
+  </div>
+  <h4>Directions</h4>
+  <% let directions = [];
+     for( let i = 0; i < 20; i++ ) {
+       directions.push[""];  %>
+       <div><%= i+1 %>:&nbsp;<textarea name="directions<%= i %>" rows="1" cols="20"></textarea></div>
+  <% } %>
+  <div><input type="submit" value="Add Recipe"></div>
+</form>
+<p><%= errorMsg %></p>
+
+<%- include('../partials/footer') %>

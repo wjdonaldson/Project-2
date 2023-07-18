@@ -8,13 +8,13 @@ var passport = require('passport');
 var methodOverride = require('method-override');
 
 require('dotenv').config();
-// connect to the database with AFTER the config vars are processed
+// connect to the database  AFTER the config vars are processed
 require('./config/database');
 require('./config/passport');
 
 // TODO: My routes go here
 const indexRouter = require('./routes/index');
-
+const recipesRouter = require('./routes/recipes');
 
 var app = express();
 
@@ -48,6 +48,7 @@ app.use(function (req, res, next) {
 
 // ROUTES BEGIN HERE
 app.use('/', indexRouter);
+app.use('/recipes', recipesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
