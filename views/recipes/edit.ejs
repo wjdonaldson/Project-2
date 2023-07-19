@@ -16,42 +16,37 @@
   <br>
 
   <div>Ingredients:</div>
-
-  <p>recipe.ingredients.length = <%= recipe.ingredients.length %></p>
-<!-- ------------------------------ -->
-
-<% if (recipe.ingredients.length) { %>
-  <% recipe.ingedients.forEach(function(i, idx) { %>
+  <% if (recipe.ingredients.length) { %>
+    <% recipe.ingredients.forEach(function(i, idx) { %>
+      <div>
+        <%= idx+1 %>:&nbsp;<%= i.quantity %>&nbsp;<%= i.units %>&nbsp;<%= i.name %>
+        <form action="/recipes/<%= recipe.id %>/ingredients/<%= idx %>?_method=DELETE"
+          method="POST">
+          <button class="btn btn-primary" type="submit">X</button>
+        </form>
+      </div>
+    <% }) %>
+  <% } else { %>
+      <div>No ingredients yet</div>
+  <% } %>
+  <form action="/recipes/<%= recipe._id %>/ingredients"
+    method="POST">
     <div>
-      <%= idx+1 %>:&nbsp;<%= i.quantity %>&nbsp;<%= i.units.name %>&nbsp;<%= i.name %>
-      <form action="/recipes/<%= recipe.id %>/ingredients/<%= idx %>?_method=DELETE"
-        method="POST">
-        <button class="btn btn-primary" type="submit">X</button>
-      </form>
+      <input type="number" name="quantity">
+    </div> 
+    <div>
+      <input type="text" name="units">
+    </div> 
+    <div>
+      <input type="text" name="name">
+    </div> 
+    <div>
+      <input type="submit" value="Add Ingredient">
     </div>
-  <% }) %>
-<% } else { %>
-    <div>No ingredients yet</div>
-<% } %>
-<form action="/recipes/<%= recipe._id %>/ingredients"
-  method="POST">
-  <div>
-    <input type="number" name="quantity">
-  </div> 
-  <div>
-    <input type="text" name="units">
-  </div> 
-  <div>
-    <input type="text" name="name">
-  </div> 
-  <div>
-    <input type="submit" value="Add Ingredient">
-  </div>
-</form>
-<br>
+  </form>
+  <br>
 
-<!-- ------------------------------ -->
-<div>Directions:</div>
+  <div>Directions:</div>
   <% if (recipe.directions.length) { %>
     <% recipe.directions.forEach(function(d, idx) { %>
       <div>
@@ -76,10 +71,6 @@
       <input type="submit" value="Add Direction">
     </div>
   </form>
-
-  <br>
-  <div>Comments:</div>
-  <br>
 </section>
 
 <%- include('../partials/footer') %>

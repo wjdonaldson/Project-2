@@ -5,6 +5,16 @@
   <div>Description: <%= recipe.description %></div>
   <br>
   <div>Ingredients:</div>
+    <% if (recipe.ingredients.length) { %>
+      <% recipe.ingredients.forEach(function(i, idx) { %>
+        <div>
+          <%= idx+1 %>:&nbsp;<%= i.quantity %>&nbsp;<%= i.units %>&nbsp;<%= i.name %>
+        </div>
+      <% }) %>
+    <% } else { %>
+        <div>No ingredients yet</div>
+    <% } %>
+  
   <br>
   <div>Directions:</div>
   <% if (recipe.directions.length) { %>
@@ -13,12 +23,52 @@
     <% }) %>
   <% } %>
   <br>
-  <div>Comments:</div>
-  <br>
+
   <form action="/recipes/<%= recipe._id %>/edit" method="GET">
     <button class="btn btn-primary" type="submit">Edit Recipe</button>
   </form>
 
+  <div>Comments:</div>
+  <% if (comments.length) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Date</th>
+          <th>Comment</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% comments.forEach(function(c) { %>
+          <tr>
+            <td><img alt="avatar" src="<%= c.userAvatar %>" referrerpolicy="no-referrer" ><%= c.userName %></td>
+            <td><%= c.createdAt.toLocaleDateString() %></td>
+            <td><%= c.content %></td>
+            <td>
+              <% if (user?._id.equals(c.user)) { %>
+                <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
+                  <button type="submit">X</button>
+                </form>
+              <% } %>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <div>No Comments Yet<div>
+  <% } %>
+
+  <% if (user) { %>
+    <form method="POST"
+      action="/recipes/<%= recipe._id %>/comments">
+      <label>Comment:</label>
+      <textarea name="content"></textarea>
+      <input type="submit" value="Add Comment">
+    </form>
+    <% }; %>
+    
 </section>
 
 <%- include('../partials/footer') %>

@@ -11,8 +11,7 @@ const ingredientSchema = new Schema({
     required: true
   },
   units: {
-    type: Schema.Types.ObjectId,
-    ref: 'Unit',
+    type: String,
     required: true
   },
 }, {

@@ -1,5 +1,5 @@
 const Recipe = require('../models/recipe');
-const Unit = require('../models/unit');
+const Comment = require('../models/comment');
 
 module.exports = {
   index,
@@ -24,8 +24,8 @@ async function index(req, res) {
 async function show(req, res) {
   try{
     const recipe = await Recipe.findById(req.params.id);
-    const units = await Unit.find({}).sort('name'); // TODO: do I need this?
-    res.render('recipes/show', { title: 'Recipe Detail', recipe, units });
+    const comments = await Comment.find({recipe: recipe._id});
+    res.render('recipes/show', { title: 'Recipe Detail', recipe, comments });
   } catch (err) {
     console.log(err);
   }
@@ -73,9 +73,9 @@ async function create(req, res) {
 async function edit(req, res) {
   try {
     const recipe = await Recipe.findById(req.params.id);
-    // await recipe.ingredients[0].populate('units');
-    await recipe.populate('ingredients.0.units');
     console.log(recipe);
+    console.log(recipe.ingredients);
+    console.log(recipe.ingredients[0]);
     res.render('recipes/edit', { title: 'Edit Recipe', recipe});
   } catch (err) {
     console.log(err);
