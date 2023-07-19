@@ -10,11 +10,11 @@
     <input type="text" name="description">
   </div>
   <h4>Directions</h4>
-  <% let directions = [];
-     for( let i = 0; i < 20; i++ ) {
-       directions.push[""];  %>
+
+  <% for( let i = 0; i < 20; i++ ) { %>
        <div><%= i+1 %>:&nbsp;<textarea name="directions<%= i %>" rows="1" cols="20"></textarea></div>
   <% } %>
+
   <div><input type="submit" value="Add Recipe"></div>
 </form>
 <p><%= errorMsg %></p>

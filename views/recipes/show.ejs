@@ -3,6 +3,7 @@
 <section>
   <div>Title: <%= recipe.title %></div>
   <div>Description: <%= recipe.description %></div>
+  <br>
   <div>Ingredients:</div>
   <br>
   <div>Directions:</div>
@@ -14,6 +15,10 @@
   <br>
   <div>Comments:</div>
   <br>
+  <form action="/recipes/<%= recipe._id %>/edit" method="GET">
+    <button class="btn btn-primary" type="submit">Edit Recipe</button>
+  </form>
+
 </section>
 
 <%- include('../partials/footer') %>

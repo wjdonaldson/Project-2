@@ -15,6 +15,7 @@ require('./config/passport');
 // TODO: My routes go here
 const indexRouter = require('./routes/index');
 const recipesRouter = require('./routes/recipes');
+const ingredientsRouter = require('./routes/ingredients');
 
 var app = express();
 
@@ -49,6 +50,7 @@ app.use(function (req, res, next) {
 // ROUTES BEGIN HERE
 app.use('/', indexRouter);
 app.use('/recipes', recipesRouter);
+app.use('/', ingredientsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
