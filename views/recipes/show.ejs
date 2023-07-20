@@ -2,8 +2,8 @@
 
 <div class="card mt-4">
   <div class="card-body">
-    <h5 class="card-title"><%= recipe.title %></h5>
-    <p class="card-text"><%= recipe.description %></p>
+    <h5><%= recipe.title %></h5>
+    <p><%= recipe.description %></p>
     <h6>Ingredients:</h6>
     <% if (recipe.ingredients.length) { %>
       <% recipe.ingredients.forEach(function(i, idx) { %>
@@ -35,7 +35,7 @@
   </div>
 </div>
 
-<section>
+<div class="mt-4">
   <h5>Comments:</h5>
   <% if (comments.length) { %>
     <table class="table">
@@ -69,14 +69,26 @@
   <% } %>
 
   <% if (user) { %>
-    <form method="POST"
-      action="/recipes/<%= recipe._id %>/comments">
-      <label>Comment:</label>
-      <textarea name="content"></textarea>
-      <input type="submit" value="Add Comment">
-    </form>
+    <div class="card mt-4">
+      <div class="card-body">
+        <form method="POST"
+          action="/recipes/<%= recipe._id %>/comments">
+          <div class="row">
+            <div class="col-2">
+              Comment:
+            </div>
+            <div class="col-6">
+              <textarea name="content" rows="2" cols="40"></textarea>
+            </div>
+            <div class="col-4">
+              <input type="submit" value="Add Comment">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   <% }; %>
     
-</section>
+</div>
 
 <%- include('../partials/footer') %>

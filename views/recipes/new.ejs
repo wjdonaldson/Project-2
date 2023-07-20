@@ -1,16 +1,22 @@
 <%- include('../partials/header') %>
 
+<h1 class="mt-4"><%= title %></h1>
+
 <form action="/recipes" method="POST">
-  <div>
-    <label>Title:</label>
+  <div class=" row m-3">
+    <label for="title" width="200px">Title:</label>
     <input type="text" name="title">
   </div> 
-  <div>
-    <label>Description:</label>
-    <input type="text" name="description">
+  <div class="row m-3">
+    <label for description width="200px">Description:</label>
+    <textarea name="description"></textarea>
   </div>
-  <div>
-    <input type="submit" value="Continue to Ingredients & Directions">
+  <div class="row m-3">
+    <div class="col-3"></div>
+    <div class="col-2">
+      <input type="submit" value="Continue to Ingredients & Directions">
+    </div>
+    <div class="col-auto"></div>
   </div>
 </form>
 <p><%= errorMsg %></p>

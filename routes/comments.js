@@ -5,7 +5,7 @@ const commentsCtrl = require('../controllers/comments');
 const ensureLoggedIn = require('../config/ensureLoggedIn');
 
 // all routes  start with /
-router.post('/recipes/:id/comments', commentsCtrl.create);
-router.delete('/comments/:id', commentsCtrl.delete)
+router.post('/recipes/:id/comments', ensureLoggedIn, commentsCtrl.create);
+router.delete('/comments/:id', ensureLoggedIn, commentsCtrl.delete)
 	
 module.exports = router;

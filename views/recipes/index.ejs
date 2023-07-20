@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <% recipes.forEach(function(r) { %>
-      <tr onclick="window.location='/recipes/<%= r._id %>';">
+      <tr>
         <td><%= r.title %></td>
         <td span="2"><%= r.description %></td>
         <td><a href="/recipes/<%= r._id %>"><button>Details</button></a></td>
