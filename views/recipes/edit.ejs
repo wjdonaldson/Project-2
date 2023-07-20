@@ -1,76 +1,149 @@
 <%- include('../partials/header') %>
 
-<section>
-  <form action="/recipes/<%= recipe._id %>?_method=PUT"
-        method="POST">
-    <div>
-      <label>Title:</label>
-      <input type="text" name="title" value="<%= recipe.title %>">
-    </div> 
-    <div>
-      <label>Description:</label>
-      <input type="text" name="description" value="<%= recipe.description %>">
-    </div>
-    <div><input type="submit" value="Update Recipe"></div>
-  </form>
-  <br>
-
-  <div>Ingredients:</div>
-  <% if (recipe.ingredients.length) { %>
-    <% recipe.ingredients.forEach(function(i, idx) { %>
-      <div>
-        <%= idx+1 %>:&nbsp;<%= i.quantity %>&nbsp;<%= i.units %>&nbsp;<%= i.name %>
-        <form action="/recipes/<%= recipe.id %>/ingredients/<%= idx %>?_method=DELETE"
+<div class="card mt-4">
+  <div class="card-body">
+    <form action="/recipes/<%= recipe._id %>?_method=PUT"
           method="POST">
-          <button class="btn btn-primary" type="submit">X</button>
-        </form>
+      <div class="row">
+        <div class="col-2">
+          Title:
+        </div>
+        <div class="col-8">
+          <input type="text" name="title" value="<%= recipe.title %>">
+        </div>
+        <div class="col-2">
+          <input type="submit" value="Update">
+        </div>
+      </div> 
+      <div class="row">
+        <div class="col-2">
+          Description:
+        </div>
+        <div class="col-10">
+          <input type="text" name="description" value="<%= recipe.description %>">
+        </div>
       </div>
-    <% }) %>
-  <% } else { %>
-      <div>No ingredients yet</div>
-  <% } %>
-  <form action="/recipes/<%= recipe._id %>/ingredients"
-    method="POST">
-    <div>
-      <input type="number" name="quantity">
-    </div> 
-    <div>
-      <input type="text" name="units">
-    </div> 
-    <div>
-      <input type="text" name="name">
-    </div> 
-    <div>
-      <input type="submit" value="Add Ingredient">
-    </div>
-  </form>
-  <br>
+    </form>
+  </div>
+</div>
+<br>
 
-  <div>Directions:</div>
-  <% if (recipe.directions.length) { %>
-    <% recipe.directions.forEach(function(d, idx) { %>
+<div class="card">
+  <div class="card-body">
+    <h4>Ingredients:</h4>
+    <% if (recipe.ingredients.length) { %>
+      <% recipe.ingredients.forEach(function(i, idx) { %>
+        <div class="row">
+          <div class="col-3">
+            <%= idx+1 %>:&nbsp;<%= i.quantity %>&nbsp;<%= i.units %>&nbsp;<%= i.name %>
+          </div>
+          <div class="col-1">
+            <div class="btn-group">
+            <form action="/recipes/<%= recipe.id %>/ingredients/<%= idx %>/up"
+              method="POST">
+              <button class="btn btn-sm" type="submit" <%= (idx === 0) ? "disabled" : "" %>>Up</button>
+            </form>
+            <form action="/recipes/<%= recipe.id %>/ingredients/<%= idx %>/down"
+              method="POST">
+              <button class="btn btn-sm" type="submit"<%= (idx === recipe.ingredients.length-1) ? "disabled" : "" %>>Dn</button>
+            </form>
+            <form action="/recipes/<%= recipe.id %>/ingredients/<%= idx %>?_method=DELETE"
+              method="POST">
+              <button class="btn btn-sm" type="submit">X</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+        <div class="row">
+          <div class="col">
+            No ingredients yet
+          </div>
+        </div>
+    <% } %>
+    <br>
+    <form action="/recipes/<%= recipe._id %>/ingredients"
+      method="POST">
+      <div class="row">
+        <div class="col-2">
+          Quantity
+        </div> 
+        <div class="col-2">
+          <input type="number" name="quantity">
+        </div> 
+      </div> 
+      <div class="row">
+        <div class="col-2">
+          Units
+        </div> 
+        <div class="col-2">
+          <input type="text" name="units">
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-2">
+          Item
+        </div> 
+        <div class="col-2">
+          <input type="text" name="name">
+        </div>
+      </div> 
       <div>
-        <%= idx+1 %>:&nbsp;<%= d %>
-        <form action="/recipes/<%= recipe.id %>/directions/<%= idx %>?_method=DELETE"
-          method="POST">
-          <button class="btn btn-primary" type="submit">X</button>
-        </form>
+        <input type="submit" value="Add Ingredient">
       </div>
-    <% }) %>
-  <% } else { %>
-      <div>No directions yet</div>
-  <% } %>
-  <br>
+    </form>
+  </div>
+</div>
+<br>
 
-  <form action="/recipes/<%= recipe._id %>/directions"
-    method="POST">
-    <div>
-      <input type="text" name="direction">
-    </div> 
-    <div>
-      <input type="submit" value="Add Direction">
-    </div>
-  </form>
-</section>
+<div class="card">
+  <div class="card-body">
+    <h4>Directions:</h4>
+    <% if (recipe.directions.length) { %>
+      <% recipe.directions.forEach(function(d, idx) { %>
+        <div class="row">
+          <div class="col-3">
+            <%= idx+1 %>:&nbsp;<%= d %>
+          </div>
+          <div class="col-1">
+            <div class="btn-group">
+              <form action="/recipes/<%= recipe.id %>/directions/<%= idx %>/up"
+                method="POST">
+                <button class="btn btn-sm" type="submit" <%= (idx === 0) ? "disabled" : "" %>>Up</button>
+              </form>
+              <form action="/recipes/<%= recipe.id %>/directions/<%= idx %>/down"
+                method="POST">
+                <button class="btn btn-sm" type="submit"<%= (idx === recipe.directions.length-1) ? "disabled" : "" %>>Dn</button>
+              </form>
+              <form action="/recipes/<%= recipe.id %>/directions/<%= idx %>?_method=DELETE"
+                method="POST">
+                <button class="btn btn-sm" type="submit">X</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <div class="row">
+        <div class="col">
+          No directions yet
+        </div>
+      </div>
+    <% } %>
+    <br>
+
+    <form action="/recipes/<%= recipe._id %>/directions"
+      method="POST">
+      <div>
+        <input type="text" name="direction">
+      </div> 
+      <div>
+        <input type="submit" value="Add Direction">
+      </div>
+    </form>
+  </div>
+</div>
+
 
 <%- include('../partials/footer') %>

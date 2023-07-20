@@ -1,19 +1,21 @@
 <%- include('../partials/header') %>
 
-<table>
+<h1 class="mt-4"><%= title %></h1>
+
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Description</th>
+      <th scope="col">Title</th>
+      <th scope="col" span="2">Description</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <% recipes.forEach(function(r) { %>
-      <tr>
+      <tr onclick="window.location='/recipes/<%= r._id %>';">
         <td><%= r.title %></td>
-        <td><%= r.description %></td>
-        <td><a href="/recipes/<%= r._id %>">Details</a></td>
+        <td span="2"><%= r.description %></td>
+        <td><a href="/recipes/<%= r._id %>"><button>Details</button></a></td>
       </tr>
     <% }); %>
   </tbody>

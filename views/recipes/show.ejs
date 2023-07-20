@@ -1,36 +1,44 @@
 <%- include('../partials/header') %>
 
-<section>
-  <div>Title: <%= recipe.title %></div>
-  <div>Description: <%= recipe.description %></div>
-  <br>
-  <div>Ingredients:</div>
+<div class="card mt-4">
+  <div class="card-body">
+    <h5 class="card-title"><%= recipe.title %></h5>
+    <p class="card-text"><%= recipe.description %></p>
+    <h6>Ingredients:</h6>
     <% if (recipe.ingredients.length) { %>
       <% recipe.ingredients.forEach(function(i, idx) { %>
-        <div>
-          <%= idx+1 %>:&nbsp;<%= i.quantity %>&nbsp;<%= i.units %>&nbsp;<%= i.name %>
+      <div class="row">
+        <div class="col-1">
+          <%= i.quantity %>&nbsp;<%= i.units %>
         </div>
+        <div class="col-11">
+          <td><%= i.name %></td>
+        </div>
+      </div>
       <% }) %>
     <% } else { %>
-        <div>No ingredients yet</div>
+      <div>No ingredients yet</div>
     <% } %>
-  
-  <br>
-  <div>Directions:</div>
-  <% if (recipe.directions.length) { %>
-    <% recipe.directions.forEach(function(d, idx) { %>
-      <div><%= idx+1 %>:&nbsp;<%= d %></div>
-    <% }) %>
-  <% } %>
-  <br>
+    <br>
+    <h6>Directions:</h6>
+    <% if (recipe.directions.length) { %>
+      <% recipe.directions.forEach(function(d, idx) { %>
+        <div class="row">
+          <div class="col">
+            <%= idx+1 %>.&nbsp;<%= d %>
+          </div>
+        </div>
+      <% }) %>
+    <% } %>
+    <br>
+    <a href="/recipes/<%= recipe._id %>/edit" class="btn btn-primary">Edit Recipe</a>
+  </div>
+</div>
 
-  <form action="/recipes/<%= recipe._id %>/edit" method="GET">
-    <button class="btn btn-primary" type="submit">Edit Recipe</button>
-  </form>
-
-  <div>Comments:</div>
+<section>
+  <h5>Comments:</h5>
   <% if (comments.length) { %>
-    <table>
+    <table class="table">
       <thead>
         <tr>
           <th>User</th>
@@ -42,7 +50,7 @@
       <tbody>
         <% comments.forEach(function(c) { %>
           <tr>
-            <td><img alt="avatar" src="<%= c.userAvatar %>" referrerpolicy="no-referrer" ><%= c.userName %></td>
+            <td><img id="avatar" alt="avatar" src="<%= c.userAvatar %>" referrerpolicy="no-referrer" >&nbsp;<%= c.userName %></td>
             <td><%= c.createdAt.toLocaleDateString() %></td>
             <td><%= c.content %></td>
             <td>
@@ -67,7 +75,7 @@
       <textarea name="content"></textarea>
       <input type="submit" value="Add Comment">
     </form>
-    <% }; %>
+  <% }; %>
     
 </section>
 

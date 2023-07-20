@@ -12,6 +12,8 @@ router.get('/:id', recipesCtrl.show);
 router.put('/:id', recipesCtrl.update);
 router.post('/:id/directions', recipesCtrl.createDirection);
 router.post('/', /*ensureLoggedIn,*/ recipesCtrl.create);
+router.post('/:rid/directions/:idx/up', recipesCtrl.moveUpDirection)
+router.post('/:rid/directions/:idx/down', recipesCtrl.moveDownDirection)
 router.delete('/:rid/directions/:did', recipesCtrl.deleteDirection)
 	
 module.exports = router;

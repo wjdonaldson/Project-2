@@ -1,4 +1,4 @@
-#google-logo {
+#google-logo, #login-avatar {
   width: 24px;
   object-fit: contain;
   margin-right: auto;
@@ -12,3 +12,10 @@
 .logo-img {
   width: 100px;
 } */
+
+#avatar {
+  border-radius: 50%;
+  height: 40px;
+  object-fit: contain;
+  margin-right: auto;
+}
