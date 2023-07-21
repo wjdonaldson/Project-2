@@ -22,7 +22,7 @@ App for keeping track of recipes.  The user can view all the recipes in the syst
 
 ## Getting Started:
 
-Click [https://damp-caverns-98404-42a1560c1f01.herokuapp.com/](https://damp-caverns-98404-42a1560c1f01.herokuapp.com/) or [http://localhost:3000/](http://localhost:3000/) to load the application. Click Recipes to see a list of recipies. Log in with your Google account if you want to be able to comment on a recipe or add your own.
+Open from [Heroku](https://damp-caverns-98404-42a1560c1f01.herokuapp.com/) or [localhost](http://localhost:3000/) to load the application. Click Recipes to see a list of recipies. Log in with your Google account if you want to be able to comment on a recipe or add your own.
 
 ## Next Steps:
 * Tie reciipes to the user that created them
