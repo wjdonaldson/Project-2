@@ -5,17 +5,19 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
+      <div class="navbar-nav navbar-right">
         <a class="nav-link" href="/">Home</a>
         <a class="nav-link" href="/recipes">Recipes</a>
         <a class="nav-link" href="/recipes/new">Add Recipe</a>
+      </div>
+      <div class="navbar-nav ms-auto">
         <a class="nav-link" href="/about">About</a>
         <% if (user) { %>
-          <a id="login-link" class="nav-link" href="/logout">Log Out&nbsp;&nbsp;<img id="login-avatar" src="<%= user.avatar %>"</a>
-        <% } else { %>
-          <a id="login-link" class="nav-link" href="/auth/google">Log In&nbsp;&nbsp;<img id="google-logo" src="https://i.imgur.com/FHjYyi0.png"></a>
+          <a id="login-link" class="nav-link" href="/logout">Log Out</a>
+          <img id="login-avatar" referrerpolicy="no-referrer" src="<%= user.avatar %>">
+          <% } else { %>
+          <a id="login-link" class="nav-link" href="/auth/google">Log In&nbsp;<img id="google-logo" src="https://i.imgur.com/FHjYyi0.png"></a>
         <% } %>
       </div>
-    </div>
   </div>
 </nav>

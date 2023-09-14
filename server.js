@@ -12,7 +12,7 @@ require('dotenv').config();
 require('./config/database');
 require('./config/passport');
 
-// TODO: My routes go here
+// My routes go here
 const indexRouter = require('./routes/index');
 const recipesRouter = require('./routes/recipes');
 const ingredientsRouter = require('./routes/ingredients');

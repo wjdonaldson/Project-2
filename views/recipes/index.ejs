@@ -7,6 +7,8 @@
     <tr>
       <th scope="col">Title</th>
       <th scope="col" span="2">Description</th>
+      <th scope="col">User</th>
+      <th scope="col">Date</th>
       <th></th>
     </tr>
   </thead>
@@ -15,6 +17,11 @@
       <tr>
         <td><%= r.title %></td>
         <td span="2"><%= r.description %></td>
+        <td>
+          <img id="avatar" alt="avatar" src="<%= r.user.avatar %>" referrerpolicy="no-referrer" >
+          &nbsp;
+          <%= r.user.name %></td>
+        <td><%= r.createdAt.toLocaleDateString() %></td>
         <td><a href="/recipes/<%= r._id %>"><button>Details</button></a></td>
       </tr>
     <% }); %>

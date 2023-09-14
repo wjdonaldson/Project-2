@@ -2,7 +2,18 @@
 
 <div class="card mt-4">
   <div class="card-body">
-    <h5><%= recipe.title %></h5>
+    <div class="row">
+      <div class="col-6">
+        <h5><%= recipe.title %></h5>
+      </div>
+      <div class="col-6">
+        <img id="avatar" alt="avatar" src="<%= recipe.user.avatar %>" referrerpolicy="no-referrer" >
+        &nbsp;
+        <%= recipe.user.name %>
+        &nbsp;
+        <%= recipe.createdAt.toLocaleDateString() %>
+      </div>
+    </div>
     <p><%= recipe.description %></p>
     <h6>Ingredients:</h6>
     <% if (recipe.ingredients.length) { %>
@@ -30,8 +41,12 @@
         </div>
       <% }) %>
     <% } %>
+    <% if (user && user.googleId == recipe.user.googleId) { %>
+      <% console.log(`show.ejs recipe= ${recipe}`) %>
+      <% console.log(`show.ejs user= ${user}`) %>
     <br>
     <a href="/recipes/<%= recipe._id %>/edit" class="btn btn-primary">Edit Recipe</a>
+    <% } %>
   </div>
 </div>
 

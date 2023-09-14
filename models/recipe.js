@@ -32,6 +32,15 @@ const ingredientSchema = new Schema({
   },
   ingredients: [ingredientSchema],
   directions: [String],
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  favorite: {
+    type: Boolean,
+    default: false,
+  }
 }, {
   timestamps: true
 });

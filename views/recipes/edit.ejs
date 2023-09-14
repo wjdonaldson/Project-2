@@ -1,5 +1,6 @@
 <%- include('../partials/header') %>
 
+<% console.log(`edit.ejs recipe = ${recipe}`); %>
 <div class="card mt-4">
   <div class="card-body">
     <form action="/recipes/<%= recipe._id %>?_method=PUT"
@@ -20,7 +21,7 @@
           Description:
         </div>
         <div class="col-10">
-          <textarea name="description" value="<%= recipe.description %>" rows="2" cols="24" autocomplete="off"></textarea>
+          <textarea name="description" rows="2" cols="24" autocomplete="off"><%= recipe.description %></textarea>
         </div>
       </div>
     </form>
@@ -63,6 +64,8 @@
         </div>
     <% } %>
     <br>
+    <hr>
+    <br>
     <form action="/recipes/<%= recipe._id %>/ingredients"
       method="POST">
       <div class="row">
@@ -97,7 +100,7 @@
 </div>
 <br>
 
-<div class="card">
+<div class="card mb-3">
   <div class="card-body">
     <h4>Directions:</h4>
     <% if (recipe.directions.length) { %>
@@ -132,7 +135,8 @@
       </div>
     <% } %>
     <br>
-
+    <hr>
+    <br>
     <form action="/recipes/<%= recipe._id %>/directions"
       method="POST">
       <div class="row">
